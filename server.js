@@ -11,10 +11,11 @@ require('dotenv').config();
 
 // Connexion à la base de données
 const db = mysql.createPool({
-  host: '10.10.2.70',
-  user: 'serge',
-  password: 'serge',
-  database: 'gest_stagiares',
+  host: process.env.DB_HOST,        // ex: crossover.proxy.rlwy.net
+  port: process.env.DB_PORT,        // ex: 34004
+  user: process.env.DB_USER,        // ex: root
+  password: process.env.DB_PASSWORD,// ex: ton mot de passe Railway
+  database: process.env.DB_NAME,    // ex: railway
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0

@@ -1,24 +1,30 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "description": "Backend Node.js pour la gestion des candidatures/stages",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
+  "author": "alexandre561",
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexandre561/backend-express.git"
+    "url": "https://github.com/alexandre561/backend-express.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/alexandre561/backend-express/issues"
   },
   "homepage": "https://github.com/alexandre561/backend-express#readme",
-  "description": "",
   "dependencies": {
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "express": "^4.18.4",
+    "mysql2": "^3.9.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
