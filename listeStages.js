@@ -26,7 +26,7 @@ module.exports = (db) => {
       )
       WHERE date_fin < CURDATE() 
       AND statut_id != (
-        SELECT id FROM Statut WHERE libele = 'Fermé'
+        SELECT id FROM statut WHERE libele = 'Fermé'
       )
     `;
 
