@@ -20,9 +20,9 @@ module.exports = (db) => {
   // Mettre à jour les stages expirés et récupérer la liste
   router.get('/listeStages', (req, res) => {
     const updateQuery = `
-      UPDATE Stage 
+      UPDATE stage 
       SET statut_id = (
-        SELECT id FROM Statut WHERE libele = 'Fermé'
+        SELECT id FROM statut WHERE libele = 'Fermé'
       )
       WHERE date_fin < CURDATE() 
       AND statut_id != (
@@ -55,7 +55,7 @@ module.exports = (db) => {
         JOIN niveau_etude n ON s.niveau_etude_id = n.id
         JOIN service se ON s.service_id = se.id
         JOIN statut st ON s.statut_id = st.id
-        LEFT JOIN Direction dir ON s.direction_id = dir.id
+        LEFT JOIN direction dir ON s.direction_id = dir.id
       `;
 
       db.query(selectQuery, (selectErr, result) => {
@@ -80,7 +80,7 @@ router.put('/stages/:id/dates', validateDates, (req, res) => {
   }
 
   const updateDatesQuery = `
-    UPDATE Stage 
+    UPDATE stage 
     SET 
       date_debut = ?, 
       date_fin = ? 
@@ -101,7 +101,7 @@ router.put('/stages/:id/dates', validateDates, (req, res) => {
     const today = new Date().toISOString().split('T')[0];
     if (date_fin > today) {
       const updateStatusQuery = `
-        UPDATE Stage 
+        UPDATE stage 
         SET statut_id = (
           SELECT id FROM Statut WHERE libele = 'Ouvert'
         ) 
