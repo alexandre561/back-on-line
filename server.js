@@ -7,6 +7,7 @@ const port = 5000;
 // Middlewares globaux - 1 seul appel à cors et express.json avec limite adaptée
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
+require('dotenv').config();
 
 // Connexion à la base de données
 const db = mysql.createPool({

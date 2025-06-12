@@ -17,5 +17,8 @@
     "url": "https://github.com/alexandre561/backend-express/issues"
   },
   "homepage": "https://github.com/alexandre561/backend-express#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
 }
