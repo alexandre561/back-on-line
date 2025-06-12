@@ -20,9 +20,9 @@ module.exports = (db) => {
         DATE_FORMAT(c.date_creation, '%Y-%m-%d %H:%i:%s') AS date_creation,
         de.libele AS domaine_etudes,
         ne.libele AS niveau_etudes
-      FROM Candidature c
-      LEFT JOIN Domaine de ON c.domaine_etudes = de.id
-      LEFT JOIN Niveau_Etude ne ON c.niveau_etudes = ne.id
+      FROM candidature c
+      LEFT JOIN domaine de ON c.domaine_etudes = de.id
+      LEFT JOIN niveau_etude ne ON c.niveau_etudes = ne.id
       ORDER BY c.date_creation DESC
     `;
 
@@ -52,7 +52,7 @@ router.put('/candidatures-spontanees-statut/:id', (req, res) => {
   }
 
   const updateQuery = `
-    UPDATE Candidature
+    UPDATE candidature
     SET statut = ?
     WHERE id = ?;
   `;

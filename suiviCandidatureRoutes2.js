@@ -24,7 +24,7 @@ module.exports = (db) => {
         statut,
         cv_filename AS cv,
         DATE_FORMAT(date_creation, '%Y-%m-%d %H:%i:%s') AS dateSoumission
-      FROM Candidature
+      FROM candidature
       WHERE code = ?
     `;
 

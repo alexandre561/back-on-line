@@ -28,7 +28,7 @@ module.exports = (db) => {
       SELECT 
         c.*, 
         s.libele AS statut 
-      FROM Soumission c
+      FROM soumission c
       JOIN statut s ON c.statut_id = s.id
       WHERE c.code_unique = ? AND (s.libele = 'Validé' OR s.libele = 'Prolongé')
       LIMIT 1

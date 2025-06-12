@@ -43,7 +43,7 @@ module.exports = (db) => {
 
     // Insertion dans la table Candidat
     const candidatQuery = `
-      INSERT INTO Candidat 
+      INSERT INTO candidat 
       (nom, prenom, niveau_etude_id, domaine_id, date_naissance, tel, email, adresse, image)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
@@ -70,7 +70,7 @@ module.exports = (db) => {
 
       // Insertion dans Soumission
       const soumissionQuery = `
-        INSERT INTO Soumission 
+        INSERT INTO soumission 
         (candidat_id, stage_id, date_soumission, statut_id, cv, lettre_motivation, code_unique)
         VALUES (?, ?, NOW(), ?, ?, ?, ?)
       `;

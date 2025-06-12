@@ -42,7 +42,7 @@ module.exports = (db) => {
     const statut = 'En attente';
 
     const query = `
-      INSERT INTO Candidature (
+      INSERT INTO candidature (
         nom, prenom, email, date_naissance, telephone, adresse,
         domaine_etudes, niveau_etudes, lettre_motivation,
         cv_filename, cv_blob, image_url, code, statut

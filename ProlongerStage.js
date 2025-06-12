@@ -8,7 +8,7 @@ module.exports = (db) => {
     const { observation } = req.body;
 
     const updateQuery = `
-      UPDATE Soumission
+      UPDATE soumission
       SET 
         statut_id = (SELECT id FROM Statut WHERE libele = 'Prolongé'),
         extension = IFNULL(extension, 0) + 1,
@@ -36,7 +36,7 @@ module.exports = (db) => {
     const { observation } = req.body;
 
     const updateQuery = `
-      UPDATE Candidature
+      UPDATE candidature
       SET 
         statut = 'Prolongé',
         extention = extention + 1,

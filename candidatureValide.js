@@ -24,12 +24,12 @@ module.exports = (db) => {
         d.libele AS domaine,
         se.libele AS service,
         st.libele AS statut
-      FROM Soumission sou
-      JOIN Candidat c ON sou.candidat_id = c.id
-      JOIN Stage s ON sou.stage_id = s.id
-      JOIN Domaine d ON s.domaine_id = d.id
-      JOIN Service se ON s.service_id = se.id
-      JOIN Statut st ON sou.statut_id = st.id
+      FROM soumission sou
+      JOIN candidat c ON sou.candidat_id = c.id
+      JOIN stage s ON sou.stage_id = s.id
+      JOIN domaine d ON s.domaine_id = d.id
+      JOIN service se ON s.service_id = se.id
+      JOIN statut st ON sou.statut_id = st.id
       WHERE st.libele IN ('Validé', 'Prolongé')
       ORDER BY sou.date_soumission DESC
     `;

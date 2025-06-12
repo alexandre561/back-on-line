@@ -92,5 +92,5 @@ app.use('/api', document(db));
 app.use('/api/check-domain', domainCheckRoutes);
 // Démarrage du serveur
 app.listen(port, () => {
-  console.log(`🚀 Serveur lancé sur http://10.10.2.70:${port}`);
+  console.log(`🚀 Serveur lancé sur :${port}`);
 });

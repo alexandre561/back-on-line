@@ -6,7 +6,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/directions', (req, res) => {
     const query = `
-      SELECT id, libele from Direction;
+      SELECT id, libele from direction;
     `;
     
     db.query(query, (err, result) => {

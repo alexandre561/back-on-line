@@ -7,7 +7,7 @@ const db = require('./db'); // Assure-toi que tu importes correctement la connex
 router.post('/api/ajouter-candidat', (req, res) => {
   const { nom, prenom, email, dateNaissance, telephone, adresse, domaineEtudes, niveauEtudes } = req.body;
 
-  const query = 'INSERT INTO Candidat (nom, prenom, email, date_naissance, telephone, adresse, domaine_etudes, niveau_etude_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+  const query = 'INSERT INTO candidat (nom, prenom, email, date_naissance, telephone, adresse, domaine_etudes, niveau_etude_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
   
   db.query(query, [nom, prenom, email, dateNaissance, telephone, adresse, domaineEtudes, niveauEtudes], (err, result) => {
     if (err) {

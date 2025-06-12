@@ -22,13 +22,13 @@ module.exports = (db) => {
         dir.libele AS direction,
         stg.date_debut,
         stg.date_fin
-      FROM Soumission s
-      JOIN Candidat c ON c.id = s.candidat_id
-      JOIN Statut st ON s.statut_id = st.id
-      JOIN Stage stg ON s.stage_id = stg.id
-      JOIN Domaine d ON stg.domaine_id = d.id
-      JOIN Service srv ON stg.service_id = srv.id
-      JOIN Direction dir ON stg.direction_id = dir.id
+      FROM soumission s
+      JOIN candidat c ON c.id = s.candidat_id
+      JOIN statut st ON s.statut_id = st.id
+      JOIN stage stg ON s.stage_id = stg.id
+      JOIN domaine d ON stg.domaine_id = d.id
+      JOIN service srv ON stg.service_id = srv.id
+      JOIN direction dir ON stg.direction_id = dir.id
       WHERE s.code_unique = ?
     `;
 

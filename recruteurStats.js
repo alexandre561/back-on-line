@@ -12,8 +12,8 @@ module.exports = (db) => {
 
       db.query(`
         SELECT COUNT(*) AS total 
-        FROM Soumission 
-        INNER JOIN Statut ON Soumission.statut_id = Statut.id 
+        FROM soumission 
+        INNER JOIN statut ON soumission.statut_id = Statut.id 
         WHERE Statut.libele = 'En attente'
       `, (err, rows2) => {
         if (err) return handleError(res, err);
@@ -25,8 +25,8 @@ module.exports = (db) => {
 
           db.query(`
             SELECT COUNT(*) AS total 
-            FROM Soumission 
-            INNER JOIN Statut ON Soumission.statut_id = Statut.id 
+            FROM soumission 
+            INNER JOIN Statut ON soumission.statut_id = statut.id 
             WHERE Statut.libele IN ('Validé', 'Prolongé')
           `, (err, rows4) => {
             if (err) return handleError(res, err);

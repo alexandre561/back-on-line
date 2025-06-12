@@ -20,7 +20,7 @@ module.exports = (db) => {
     } = req.body;
 
     const query = `
-      INSERT INTO Stage (
+      INSERT INTO stage (
         intitule, 
         date_debut, 
         date_fin, 

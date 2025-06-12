@@ -24,12 +24,12 @@ module.exports = (db) => {
         n.libele AS niveau_etude,
         se.libele AS service,
         st.libele AS statut
-      FROM Stage s
-      LEFT JOIN Domaine d ON s.domaine_id = d.id
-      LEFT JOIN Direction dir ON s.direction_id = dir.id
-      LEFT JOIN Niveau_Etude n ON s.niveau_etude_id = n.id
-      LEFT JOIN Service se ON s.service_id = se.id
-      LEFT JOIN Statut st ON s.statut_id = st.id
+      FROM stage s
+      LEFT JOIN domaine d ON s.domaine_id = d.id
+      LEFT JOIN direction dir ON s.direction_id = dir.id
+      LEFT JOIN niveau_etude n ON s.niveau_etude_id = n.id
+      LEFT JOIN service se ON s.service_id = se.id
+      LEFT JOIN statut st ON s.statut_id = st.id
       WHERE s.intitule LIKE ?
     `;
 

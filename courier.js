@@ -7,7 +7,7 @@ module.exports = (db) => {
     const demandeId = req.params.id;
     console.log(`[LOG] Requête courrier pour id = ${demandeId}`);
 
-    const query = 'SELECT courrier FROM Demande WHERE id = ?';
+    const query = 'SELECT courrier FROM demande WHERE id = ?';
 
     db.query(query, [demandeId], (err, results) => {
       if (err) {

@@ -9,7 +9,7 @@ module.exports = (db) => {
     const dateTraitement = new Date();
 
     const sql  = `
-      UPDATE Demande
+      UPDATE demande
       SET  id_statut       = ?,
            decision        = ?,
            date_traitement = ?,
@@ -36,7 +36,7 @@ module.exports = (db) => {
     const dateTraitement = new Date();
 
     const sql  = `
-      UPDATE Demande
+      UPDATE demande
       SET  id_statut       = ?,
            decision        = ?,
            date_traitement = ?,

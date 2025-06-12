@@ -50,11 +50,11 @@ module.exports = (db) => {
           se.libele AS service,
           dir.id AS direction_id,
           dir.libele AS direction_libele
-        FROM Stage s
-        JOIN Domaine d ON s.domaine_id = d.id
-        JOIN Niveau_Etude n ON s.niveau_etude_id = n.id
-        JOIN Service se ON s.service_id = se.id
-        JOIN Statut st ON s.statut_id = st.id
+        FROM stage s
+        JOIN domaine d ON s.domaine_id = d.id
+        JOIN niveau_etude n ON s.niveau_etude_id = n.id
+        JOIN service se ON s.service_id = se.id
+        JOIN statut st ON s.statut_id = st.id
         LEFT JOIN Direction dir ON s.direction_id = dir.id
       `;
 

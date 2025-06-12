@@ -22,7 +22,7 @@ module.exports = (db) => {
     }
 
     const sql = `
-      INSERT INTO Demande (date, service, courrier, id_stagiaire, id_statut)
+      INSERT INTO demande (date, service, courrier, id_stagiaire, id_statut)
       VALUES (?, ?, ?, ?, ?)
     `;
     const values = [date, service, courrier, candidat_id, 1]; // statut 1 = "en attente" par défaut
