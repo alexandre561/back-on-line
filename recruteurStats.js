@@ -6,15 +6,15 @@ module.exports = (db) => {
   router.get("/statistiques", (req, res) => {
     const results = {};
 
-    db.query("SELECT COUNT(*) AS total FROM Stage", (err, rows1) => {
+    db.query("SELECT COUNT(*) AS total FROM stage", (err, rows1) => {
       if (err) return handleError(res, err);
       results.offres = rows1[0].total;
 
       db.query(`
         SELECT COUNT(*) AS total 
         FROM soumission 
-        INNER JOIN statut ON soumission.statut_id = Statut.id 
-        WHERE Statut.libele = 'En attente'
+        INNER JOIN statut ON soumission.statut_id = statut.id 
+        WHERE statut.libele = 'En attente'
       `, (err, rows2) => {
         if (err) return handleError(res, err);
         results.offresEnAttente = rows2[0].total;
@@ -26,8 +26,8 @@ module.exports = (db) => {
           db.query(`
             SELECT COUNT(*) AS total 
             FROM soumission 
-            INNER JOIN Statut ON soumission.statut_id = statut.id 
-            WHERE Statut.libele IN ('Validé', 'Prolongé')
+            INNER JOIN statut ON soumission.statut_id = statut.id 
+            WHERE statut.libele IN ('Validé', 'Prolongé')
           `, (err, rows4) => {
             if (err) return handleError(res, err);
             results.candidatsSelectionnes = rows4[0].total;

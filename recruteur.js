@@ -32,7 +32,7 @@ module.exports = (db) => {
     UNION
 
     SELECT DISTINCT ca.id, ca.nom, ca.prenom, ca.email
-    FROM Candidature ca
+    FROM candidature ca
   `;
 
   db.query(query, (err, results) => {

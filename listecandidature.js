@@ -31,7 +31,7 @@ module.exports = (db) => {
       JOIN statut st ON sou.statut_id = st.id
       ORDER BY sou.date_soumission DESC
     `;
-  
+
     db.query(query, (err, results) => {
       if (err) {
         console.error("Erreur lors de la récupération des candidatures :", err);
@@ -39,29 +39,29 @@ module.exports = (db) => {
       }
 
       results.forEach(result => {
-        // L'image est envoyée telle quelle
+        // L'image reste inchangée
         result.candidat_image = result.candidat_image;
 
-        // Générer le lien d'accès au CV
+        // Lien d'accès au CV
         if (result.cv) {
           result.cv = `/api/cv/${result.soumission_id}`;
         }
       });
 
-      console.log("Candidatures récupérées :", results);
+      console.log("✅ Candidatures récupérées :", results.length);
       res.json(results);
     });
   });
 
-  // Route pour afficher un CV sous forme de fichier PDF
+  // Affichage d'un CV
   router.get("/cv/:id", (req, res) => {
     const soumissionId = req.params.id;
 
-    const query = `SELECT cv FROM Soumission WHERE id = ?`;
+    const query = `SELECT cv FROM soumission WHERE id = ?`;
 
     db.query(query, [soumissionId], (err, results) => {
       if (err || results.length === 0 || !results[0].cv) {
-        console.error("CV non trouvé ou erreur :", err);
+        console.error("❌ CV non trouvé ou erreur :", err);
         return res.status(404).send("CV non trouvé.");
       }
 
@@ -78,45 +78,53 @@ module.exports = (db) => {
     const { id } = req.params;
     const { statut } = req.body;
 
+    console.log("✅ PUT /candidatures/:id");
+    console.log("🆔 ID candidature reçu :", id);
+    console.log("📌 Statut reçu :", statut);
+
     if (!statut) {
       return res.status(400).json({ error: "Le statut doit être fourni." });
     }
 
     const statutsValides = ["En cours", "Validé", "Rejeté"];
     if (!statutsValides.includes(statut)) {
-      return res.status(400).json({ error: `Le statut doit être l'un de : ${statutsValides.join(", ")}` });
+      return res.status(400).json({ error: `Le statut doit être : ${statutsValides.join(", ")}` });
     }
 
-    const statutQuery = `SELECT id FROM Statut WHERE libele = ?`;
+    const statutQuery = `SELECT id FROM statut WHERE libele = ?`;
 
     db.query(statutQuery, [statut], (err, result) => {
       if (err) {
-        console.error("Erreur lors de la récupération du statut :", err);
-        return res.status(500).json({ error: "Erreur serveur" });
+        console.error("❌ Erreur SELECT statut :", err);
+        return res.status(500).json({ error: "Erreur serveur (SELECT statut)" });
       }
 
-      if (result.length === 0) {
+      if (!result || result.length === 0) {
+        console.warn("⚠️ Statut non trouvé :", statut);
         return res.status(400).json({ error: "Statut non trouvé dans la base de données." });
       }
 
       const statut_id = result[0].id;
+      console.log("✅ ID du statut récupéré :", statut_id);
 
       const updateQuery = `
-        UPDATE Soumission
+        UPDATE soumission
         SET statut_id = ?
         WHERE id = ?;
       `;
 
       db.query(updateQuery, [statut_id, id], (err, results) => {
         if (err) {
-          console.error("Erreur lors de la mise à jour du statut :", err);
-          return res.status(500).json({ error: "Erreur serveur" });
+          console.error("❌ Erreur UPDATE soumission :", err);
+          return res.status(500).json({ error: "Erreur serveur (UPDATE soumission)" });
         }
 
         if (results.affectedRows === 0) {
+          console.warn("⚠️ Aucune candidature mise à jour. ID non trouvé ?", id);
           return res.status(404).json({ error: "Candidature non trouvée" });
         }
 
+        console.log("✅ Statut mis à jour pour la candidature :", id);
         res.json({ message: `Candidature mise à jour avec le statut '${statut}' avec succès.` });
       });
     });

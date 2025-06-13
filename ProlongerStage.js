@@ -10,7 +10,7 @@ module.exports = (db) => {
     const updateQuery = `
       UPDATE soumission
       SET 
-        statut_id = (SELECT id FROM Statut WHERE libele = 'Prolongé'),
+        statut_id = (SELECT id FROM statut WHERE libele = 'Prolongé'),
         extension = IFNULL(extension, 0) + 1,
         observation = ?
       WHERE id = ?
