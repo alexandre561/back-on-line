@@ -16,6 +16,7 @@ const db = mysql.createPool({
   user: process.env.DB_USER,        // ex: root
   password: process.env.DB_PASSWORD,// ex: ton mot de passe Railway
   database: process.env.DB_NAME,    // ex: railway
+  charset: 'utf8mb4',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
